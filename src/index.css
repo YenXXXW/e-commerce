@@ -1,0 +1,25 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components{
+    body{
+        @apply !scrollbar-thin !scrollbar-track-transparent !scrollbar-thumb-[#511cad]
+    }
+    .darkTheme{
+        @apply bg-black/90 text-white border-t-white
+    }
+    .borderLightTheme{
+        @apply border-t-gray-400
+    }
+    .textSize{
+        @apply text-sm md:text-base 
+    }
+    .detailsTextSize{
+        @apply md:text-lg
+    }
+    .hoverColor{
+        @apply hover:bg-[#86b4e9]  dark:hover:bg-[#736de6]
+    }
+    
+}
