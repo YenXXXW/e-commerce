@@ -1,6 +1,7 @@
 import React, { useRef, useState } from 'react'
 import { useCategories } from '../hooks/useCategories'
-import {IoIosArrowBack, IoIosArrowForward  } from 'react-icons/io'
+import { IoIosArrowBack, IoIosArrowForward  } from 'react-icons/io'
+import { BsStarHalf , BsStar ,BsStarFill } from 'react-icons/bs'
 import { Link } from 'react-router-dom'
 import { useGetAllProducts } from '../hooks/useGetAllProducts'
 
@@ -24,6 +25,42 @@ export const Home = () => {
             rowRef.current.scrollTo({left:scrollTo  ,  behavior : 'smooth'})
         }
     }
+    const handleStars = (num) => {
+        let rating = Math.round(num*2)/2
+        let stars=[]
+        for(let i = 0 ; i <=4 ; i++) { 
+            if(rating >= 1) {
+            stars.push(1)
+            rating =rating-1
+            }else if(rating === 0.5 ){
+            stars.push(0.5)
+            rating = rating-0.5  
+            }else{
+                stars.push(0)
+            }
+        }
+
+        return (
+            <div className='flex space-x-1'>
+                {
+                stars.map(star=>(
+                    <p className='text-[#f7ef8a]'>
+                        {
+                            (star === 1 && <BsStarFill/>)
+                            || ( star === 0 && <BsStar/>) 
+                            || ( star === 0.5 && <BsStarHalf/>)
+                        }
+                    </p>
+                 
+                    
+                ))
+            }
+
+            </div>
+            
+        )
+    }
+
   return (
     <div className = 'w-full relative'>
         <div className='mt-2 px-10 w-[90vw]  lg:w-[85vw] mx-auto relative'>
@@ -52,16 +89,27 @@ export const Home = () => {
             className='absolute top-1 right-2 cursor-pointer hover:scale-150
             transiton duration-200'/>
             
-        </div>
-        <div className='mt-[40vh] sm:mt-[50vh] grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-x-10 gap-y-10'>
+        </div>       
+        
+        <div className='mt-[40vh] sm:mt-[50vh] grid sm:grid-cols-2 gap-x-10 gap-y-10'>
             {
-                products?.data.products.slice(0,19).map(product=>(
-                    <Link to={`/${product.category}/${product.title.replace(/\s/g, '')}`}>
+                products?.data.products.map(product=>(
+                    <Link to={`/${product.category}/${product.title}`}>
                         <div
-                        className='w-[150px] md:w-[180px]' 
+                        className=' flex  justify-center space-x-4' 
                         >
-                            <img src={product.thumbnail}/>
-                            {product.title}
+                            <div className='w-[150px] h-[130px] sm:w-[180px] sm:h-[150px] md:w-[200px] relative'>
+                                <img src={product.thumbnail}
+                                 className="rounded-md w-[100%] h-[100%] object-cover"
+                                />
+                            </div>
+                            
+                            <div className='h-[130px] sm:h-[150px]  md:w-[200px] w-[150px] flex flex-col justify-center sm:w-[200px] text-sm'>
+                                <p>{product.title}</p>
+                                <p className='mb-2'>price : <span className='text-base font-bold'>${product.price}</span></p>
+                                {handleStars(product.rating)}
+                                <button className='orderButton mt-3 max-w-[100px]'>Order Now</button>                              
+                            </div>                            
                         </div>  
                     </Link>
                       

@@ -11,7 +11,7 @@ const client = new QueryClient()
 function App() {
   
   return (
-    <div className='dark:darkTheme bg-white/60 min-h-screen text-black/70 textSize w-full'>
+    <div className='dark:darkTheme bg-[#e4d4d4] min-h-screen text-black/70 textSize w-full'>
       <QueryClientProvider client ={client}>
         <BrowserRouter>   
           <Routes>

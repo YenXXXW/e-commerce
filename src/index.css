@@ -21,5 +21,8 @@
     .hoverColor{
         @apply hover:bg-[#86b4e9]  dark:hover:bg-[#736de6]
     }
+    .orderButton{
+        @apply bg-gradient-to-r from-blue-500 to-fuchsia-600 px-2 py-1 text-white rounded-md
+    }
     
 }
