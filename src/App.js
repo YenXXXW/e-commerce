@@ -5,6 +5,7 @@ import { Navbar } from './components/Navbar';
 import { Home } from './pages/Home';
 import { CategoryDetails } from './pages/CategoryDetails'
 import { ProductDetails } from './pages/ProductDetails';
+import { SearchItem } from './pages/SearchItem';
 const client = new QueryClient()
 
 function App() {

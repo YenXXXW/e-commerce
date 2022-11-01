@@ -2,12 +2,14 @@ import React, { useRef, useState } from 'react'
 import { useCategories } from '../hooks/useCategories'
 import {IoIosArrowBack, IoIosArrowForward  } from 'react-icons/io'
 import { Link } from 'react-router-dom'
+import { useGetAllProducts } from '../hooks/useGetAllProducts'
 
 export const Home = () => {
     const rowRef = useRef(null)
     const { isLoading , data , isError } = useCategories()
     const [ moved , setMoved ] = useState(false)
     const [ToScrollTo , setToScrollTo] = useState(null)
+    const { data : products }= useGetAllProducts()
 
     const handleClick=(direction)=>{
         setMoved(true)
@@ -51,7 +53,21 @@ export const Home = () => {
             transiton duration-200'/>
             
         </div>
-        
+        <div className='mt-[40vh] sm:mt-[50vh] grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-x-10 gap-y-10'>
+            {
+                products?.data.products.slice(0,19).map(product=>(
+                    <Link to={`/${product.category}/${product.title.replace(/\s/g, '')}`}>
+                        <div
+                        className='w-[150px] md:w-[180px]' 
+                        >
+                            <img src={product.thumbnail}/>
+                            {product.title}
+                        </div>  
+                    </Link>
+                      
+                ))
+            }
+        </div>
     </div>
   )
 }
