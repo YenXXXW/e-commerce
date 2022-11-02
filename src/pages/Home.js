@@ -97,7 +97,7 @@ export const Home = () => {
                 products?.data.products.map(product=>(
                     <Link to={`/${product.category}/${product.title}`}>
                         <div
-                        className=' flex  justify-center space-x-4 bg-red-400' 
+                        className=' flex  justify-center space-x-4' 
                         >
                             <div className='w-[130px] h-[120px] sm:w-[180px] sm:h-[150px] md:w-[200px] relative'>
                                 <img src={product.thumbnail}
@@ -105,7 +105,7 @@ export const Home = () => {
                                 />
                             </div>
                             
-                            <div className='h-[130px] sm:h-[150px]  md:w-[200px] w-[150px] flex flex-col justify-center sm:w-[200px] text-sm bg-slate-200'>
+                            <div className='h-[130px] sm:h-[150px]  md:w-[200px] w-[150px] flex flex-col justify-center sm:w-[200px] text-sm'>
                                 <p>{product.title}</p>
                                 <p className='mb-2'>price : <span className='text-base font-bold'>${product.price}</span></p>
                                 {handleStars(product.rating)}

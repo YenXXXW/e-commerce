@@ -28,7 +28,7 @@ export const Navbar = () => {
   
   const handleOnSelect = (item) => {
     setIsSearching(!isSearching)
-    navigate(`/${item.category}/${item.name.replace(/\s/g, '')}`)
+    navigate(`/${item.category}/${item.name}`)
   };
   
 
@@ -57,13 +57,7 @@ export const Navbar = () => {
           <div className='flex space-x-2 '>
             <div className={`w-[170px] z-50 ${!isSearching && 'hidden'}`}>
               <ReactSearchAutocomplete  items={items}
-                // fuseOptions={{ keys: ["title", "description"] }} // Search on both fields
-                // resultStringKeyName="title" // String to display in the results
-                // onSearch={handleOnSearch}
-                // onHover={handleOnHover}
                 onSelect={handleOnSelect}
-                // onFocus={handleOnFocus}
-                // onClear={handleOnClear}
                 showIcon={false}
                 showClear={false}
                 styling={{
