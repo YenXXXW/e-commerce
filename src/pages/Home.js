@@ -44,20 +44,16 @@ export const Home = () => {
             <div className='flex space-x-1'>
                 {
                 stars.map(star=>(
-                    <p className='text-[#f7ef8a]'>
+                    <p className='text-[#926f34] dark:text-[#e0aa3e]'>
                         {
                             (star === 1 && <BsStarFill/>)
                             || ( star === 0 && <BsStar/>) 
                             || ( star === 0.5 && <BsStarHalf/>)
                         }
-                    </p>
-                 
-                    
+                    </p>                
                 ))
             }
-
-            </div>
-            
+            </div>            
         )
     }
 
@@ -90,21 +86,26 @@ export const Home = () => {
             transiton duration-200'/>
             
         </div>       
-        
-        <div className='mt-[40vh] sm:mt-[50vh] grid sm:grid-cols-2 gap-x-10 gap-y-10'>
+        {/* <div className='w-full h-[40vh] sm:h-[60vh]'>
+            <img
+             src={'https://www.connectpos.com/wp-content/uploads/2020/12/pasted-image-0-1-1024x576.png'}
+             className="w-full h-full object-cover"
+            />
+        </div> */}
+        <div className='mt-[10vh] grid sm:grid-cols-2 gap-x-10 gap-y-10'>
             {
                 products?.data.products.map(product=>(
                     <Link to={`/${product.category}/${product.title}`}>
                         <div
-                        className=' flex  justify-center space-x-4' 
+                        className=' flex  justify-center space-x-4 bg-red-400' 
                         >
-                            <div className='w-[150px] h-[130px] sm:w-[180px] sm:h-[150px] md:w-[200px] relative'>
+                            <div className='w-[130px] h-[120px] sm:w-[180px] sm:h-[150px] md:w-[200px] relative'>
                                 <img src={product.thumbnail}
                                  className="rounded-md w-[100%] h-[100%] object-cover"
                                 />
                             </div>
                             
-                            <div className='h-[130px] sm:h-[150px]  md:w-[200px] w-[150px] flex flex-col justify-center sm:w-[200px] text-sm'>
+                            <div className='h-[130px] sm:h-[150px]  md:w-[200px] w-[150px] flex flex-col justify-center sm:w-[200px] text-sm bg-slate-200'>
                                 <p>{product.title}</p>
                                 <p className='mb-2'>price : <span className='text-base font-bold'>${product.price}</span></p>
                                 {handleStars(product.rating)}
